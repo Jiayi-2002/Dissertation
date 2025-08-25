@@ -1,0 +1,134 @@
+# Coefficients from: Guerra-Langan A, Araujo-Estrada S, Windsor S. Unmanned aerial vehicle control costs mirror bird behaviour when soaring close to buildings. International Journal of Micro Air Vehicles. 2020;12. doi:10.1177/1756829320941005
+# MODIFIED FOR 2.0m WINGSPAN VARIANT
+
+
+# Physical parameters
+# ===================
+
+# Physical constants
+# ------------------
+g: 9.81
+rho: 1.225
+# Non-dimensional constant, q_const = c/(2*Vm)
+# Vm = 18m/s => q_const = 0.150000/36
+q_const: 0.004167
+# Non-dimensional constant, b_2V = b/(2*Vm)
+# = 2.0/36 = 0.055556
+b_2V: 0.055556
+
+# Aircraft model parameters
+# -------------------------
+# Wing area
+S: 0.3
+# Wing Mean-Aerodynamic-Chord (MAC)
+c: 0.150000
+# Wing span
+b: 2.0
+# Aircraft/UAV mass
+m: 1.345
+# Aircraft/UAV moments of inertia - CALCULATED FOR 2.0m WINGSPAN
+I_xx: 0.136595 # kg m^2
+I_yy: 0.076587 # kg m^2
+I_zz: 0.196182 # kg m^2
+# Aircraft/UAV moment of inertia - Sergio
+I_xz: 0.0015
+# Oswald factor
+e_oswald: 0.7
+
+
+# Aerodynamic coefficients
+# ========================
+
+# Drag coefficients
+drag_model_name: "cl_derived"
+Cd_0: 0.03
+Cd_alpha: 0.48
+Cd_alpha2: 1.26
+
+# Sideforce coefficients
+CY_beta: -4.31e-01
+CY_da: 2.03e-02
+CY_dr: 3.71e-02
+# == Zero coeffs==
+CY_0: 0.0
+CY_p: 0.0
+CY_r: 0.0
+
+# Lift coefficients
+alpha_0: 4.44e-03
+Cl_alpha: 3.89
+Cl_q: 1.04e-01
+Cl_de: -4.24e-01
+# == Zero coeffs==
+Cl_dt: 0.0
+
+# Thrust coefficients
+Ct_k: 5
+Ct_dt2: 1.06e+01
+# == Zero coeffs==
+Ct_alpha: 0.0
+Ct_q: 0.0
+Ct_dt: 0.0
+
+# Roll moment coefficients
+Cl_beta: -7.74e-03
+Cl_p: -5.09e-02
+Cl_r: 3.13e-02
+Cl_da: -3.50e-02
+Cl_dr: -2.54e-03
+# == Zero coeffs==
+Cl_0_lat: 0.0
+
+# Pitch moment coefficients
+Cm_0: 4.22e-03
+Cm_alpha: -1.01e-01
+Cm_q: -4.84
+Cm_de: -3.02e-01
+# == Zero coeffs==
+Cm_dt: 0.0
+
+# Yaw moment coefficients
+Cn_beta: 4.04e-02
+Cn_p: -1.26e-02
+Cn_r: -1.65e-01
+Cn_da: -6.39e-04
+Cn_dr: -4.13e-02
+# == Zero coeffs==
+Cn_0: 0.0
+
+
+# Enveloping parameters
+# =====================
+# 1.03  # Smallest value from pg. 132 of Ana's thesis.
+# Now taken from a graph in Ana's thesis, Fig. 5.2(a), pg.89 - graph shows that 1.3 is possible,
+# so using it instead, as 1.03 seemed too low (according to Shane).
+max_cl: 1.3
+# TODO These are just arbitrary values and need finding for this model.
+# See: https://uob-my.sharepoint.com/personal/jx20025_bristol_ac_uk/Documents/Documents/PhD/Projects/WOT4%20simulator/WOT4%20Dynamics%20Model%20Questions.docx?web=1
+min_va: 1  # Lower extreme of validity region: 10
+max_va: 30 # Upper extreme of validity region: 22
+# Alpha and beta are in radians
+min_alpha: -0.26    # ~ -15 deg. Going from Ana's thesis, pg.64.
+max_alpha: 0.34906585   # ~ 20 deg. Right at the top of linear lift slope region, on the cusp of stall. Ana's thesis, pg. 64.
+min_beta: -0.25
+max_beta: 0.25
+min_p: -1.0  # -0.75    # ~ 57 degrees/s
+max_p: 1.0   # 0.75
+min_q: -1.0  # -0.75
+max_q: 1.0   # 0.75
+min_r: -1.0  # -0.75
+max_r: 1.0   # 0.75
+# da: [-np.radians(18), np.radians(18)]
+min_da_radians: -0.31415927
+max_da_radians: 0.31415927
+# de: [-np.radians(15), np.radians(15)]
+min_de_radians: -0.26179939
+max_de_radians: 0.26179939
+# dr: [-np.radians(29), np.radians(29)]
+min_dr_radians: -0.50614548
+max_dr_radians: 0.50614548
+min_dp: 0.0
+# TODO I don't know what this should be!
+max_dp: 1.0
+min_load_factor: -3
+max_load_factor: 3 
